@@ -1,5 +1,7 @@
 #include <algorithm>
 #include <cassert>
+#include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <unordered_set>
@@ -11,6 +13,14 @@ public:
     auto run_tests(void) -> void {
         assert(this->solve(std::string{"1011"}) == 4);
         assert(this->solve(std::string{""}) == 1);
+
+        auto file = std::ifstream{"q3-long.txt"};
+        auto large = std::string{};
+        file >> large;
+        auto big = this->solve(large);
+        file.close();
+
+        assert(big == 692);
     }
 };
 
@@ -45,6 +55,10 @@ public:
 class certain : public solution {
     public:
     auto solve(std::string s) -> int override {
+        if (s.empty()) {
+            return 1;
+        }
+
         auto prefix = std::vector<int>{0};
         for (auto chr : s) {
             prefix.push_back((chr == '0' ? 1 : -1) + prefix.back());
