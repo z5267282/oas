@@ -21,6 +21,10 @@ public:
         file.close();
 
         assert(big == 692);
+
+        // all 1s should be slow for the set solution
+        auto all_same = this->solve(std::string(100 * 1000, '1'));
+        assert(all_same == 100000);
     }
 };
 
