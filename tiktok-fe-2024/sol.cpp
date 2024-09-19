@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cassert>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -15,7 +16,9 @@ auto main(void) -> int {
 auto solve(std::string s) -> int {
     // look at all substring lengths starting from s' size
     // for each substring length, use a contiguous-sized sliding window to check all substrings to see if they are valid
-    for (auto length = s.size(); length > 0; ++length) {
+
+    // something dumb: wrote ++ instead of -- here
+    for (auto length = s.size(); length > 0; --length) {
         // initialise the first window
         auto window = std::vector<int>(26, 0);
         auto high = 0;
